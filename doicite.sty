@@ -1,6 +1,6 @@
 \NeedsTeXFormat{LaTeX2e}[1994/12/01]
 \ProvidesPackage{doicite}[2013/07/09]
 
-\newcommand{\doi}[1]{\immediate\write18{doicite.py --jobname "\jobname" --doi "#1"}\immediate\input{\jobname.temp}}
+\newcommand{\doi}[1]{\immediate\write18{doicite.py --jobname "\jobname" --doi "#1"}\immediate\input{\jobname.temp}\unskip}
 
 \endinput
