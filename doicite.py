@@ -16,12 +16,15 @@ def main():
     if citation == '':
         curlstring = 'C:\curl -LH "Accept: text/bibliography; style=bibtex" http://dx.doi.org/'
         citation = os.popen(curlstring + options.doi).read()
+        breakcitation = re.split(',',citation)
+        breakcitation[0] = re.split('{|,',citation)[0] + '{' + options.doi
+        citation = ",".join(breakcitation)
         if 'Internal Server Error' in citation: 
             citation = '{FETCH ERROR,}'
         else:
             with open(options.jobname+ '.bib', 'a') as myfile:
                 myfile.write(citation + '\n \n')
-    with open(options.jobname+ '.temp', 'w') as myfile:
+    with open(options.jobname+ '.temp', 'w') as myfile: 
                 myfile.write('\cite{'+re.split('{|,', citation)[1]+'}') 
 				
 	
